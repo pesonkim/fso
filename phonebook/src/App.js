@@ -46,7 +46,7 @@ const Form = ({ handleSubmit, name, number, setName, setNumber }) => {
 
 const Notification = ({ message }) => {
     const style = {
-        color: 'green',
+        color: 'red',
         background: 'lightgrey',
         fontSize: '20px',
         borderStyle: 'solid',
@@ -99,6 +99,12 @@ const App = () => {
                             setErrorMessage(null)
                         }, 5000)
                     })
+                    .catch(error => {
+                        setErrorMessage(error.response.data.error)
+                        setTimeout(() => {
+                            setErrorMessage(null)
+                        }, 5000)
+                    })
             }
         }
         if (newName !== '' && check.length === 0) {
@@ -115,6 +121,12 @@ const App = () => {
                     setNewName('')
                     setNewNumber('')
                 })
+                .catch(error => {
+                    setErrorMessage(error.response.data.error)
+                    setTimeout(() => {
+                        setErrorMessage(null)
+                    }, 5000)
+                })
         }
     }
 
@@ -123,25 +135,25 @@ const App = () => {
 
         if (window.confirm(`Delete ${name.name} ?`)) {
             contactService
-            .remove(id)
-            .then(response => {
-                setPersons(persons.filter(person => person.id !== id))
-                setErrorMessage(
-                    `Removed contact '${name.name}'`
-                )
-                setTimeout(() => {
-                    setErrorMessage(null)
-                }, 5000)
-            })
-            .catch(error => {
-                setPersons(persons.filter(person => person.id !== id))
-                setErrorMessage(
-                    `Contact '${name.name}' was already removed from server`
-                )
-                setTimeout(() => {
-                    setErrorMessage(null)
-                }, 5000)
-            })
+                .remove(id)
+                .then(response => {
+                    setPersons(persons.filter(person => person.id !== id))
+                    setErrorMessage(
+                        `Removed contact '${name.name}'`
+                    )
+                    setTimeout(() => {
+                        setErrorMessage(null)
+                    }, 5000)
+                })
+                .catch(error => {
+                    setPersons(persons.filter(person => person.id !== id))
+                    setErrorMessage(
+                        `Contact '${name.name}' was already removed from server`
+                    )
+                    setTimeout(() => {
+                        setErrorMessage(null)
+                    }, 5000)
+                })
         }
     }
 
