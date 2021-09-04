@@ -1,0 +1,29 @@
+{
+    "name": "part03",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js",
+        "build:ui": "rm -rf build && cd ../notes/ && npm run build --prod && cp -r build ../notes-backend/",
+        "lint": "eslint .",
+        "test": "jest --verbose"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "mongoose": "^6.0.4"
+    },
+    "devDependencies": {
+        "eslint": "^7.32.0",
+        "jest": "^27.1.0",
+        "nodemon": "^2.0.12"
+    },
+    "jest": {
+        "testEnvironment": "node"
+    }
+}
