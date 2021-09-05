@@ -1,6 +1,8 @@
 POST http://localhost:3001/api/notes/
 content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYxMzRjMjJjMzg3ZTIyYjQ3ZDQ4OGYyNCIsImlhdCI6MTYzMDg1MDY2N30.6M1F0VEtXMCrNu5pk1TFXDQP0II01a4S3TXW3SyI6PE
 
 {
-    "content": "lolzz"
+    "content": "for you and two",
+    "userId": "6134c42be395fdb73a850dfd"
 }

@@ -1,10 +1,9 @@
-POST http://localhost:3003/api/blogs/
+PUT http://localhost:3003/api/blogs/6134b65e881f810889f535d3
 Content-Type: application/json
-Authorization: bearer 
 
 {
     "title": "title",
     "author": "author",
     "url": "http://localhost:3003/api/blogs/",
-    "likes": 123
+    "likes": "1233543542"
 }
