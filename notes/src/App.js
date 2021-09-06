@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Note from './components/Note'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
@@ -15,6 +15,8 @@ const App = (props) => {
     const [showAll, setShowAll] = useState(true)
     const [errorMessage, setErrorMessage] = useState(null)
     const [loginVisible, setLoginVisible] = useState(false)
+
+    const noteFormRef = useRef()
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -39,6 +41,7 @@ const App = (props) => {
     }, [])
 
     const addNote = (noteObject) => {
+        noteFormRef.current.toggleVisibility()
         noteService
             .create(noteObject)
             .then(returnedNote => {
@@ -59,7 +62,7 @@ const App = (props) => {
     )
 
     const noteForm = () => (
-        <Togglable buttonLabel="new note">
+        <Togglable buttonLabel="new note" ref={noteFormRef}>
             <NoteForm
                 createNote={addNote}
             />
@@ -101,7 +104,7 @@ const App = (props) => {
             .then(returnedNote => {
                 setNotes(notes.map(note => note.id === id ? returnedNote : note))
             })
-            .catch(error => {
+            .catch(() => {
                 setErrorMessage(
                     `Note '${note.content}' was already removed from server`
                 )
